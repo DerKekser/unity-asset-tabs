@@ -131,6 +131,7 @@ namespace Nomnom.AssetTabs {
 
         private static void OnDragPerform(DragPerformEvent evt) {
             UnRegisterEnterDrag(_lastWindow);
+            var editorWindow = _lastWindow;
             _lastWindow = null;
             
             var dragObjects = DragAndDrop.objectReferences;
@@ -140,7 +141,7 @@ namespace Nomnom.AssetTabs {
             }
             
             var currentWindow = EditorWindow.mouseOverWindow;
-            if (!currentWindow) return;
+            if (!currentWindow || currentWindow != editorWindow) return;
             
             var tabRect = currentWindow.position;
             tabRect.height = 30;
